@@ -1,0 +1,10 @@
+[build]
+builder = "nix"
+
+[build.nix]
+nixpacks.pkgs = ["libgomp", "libffi", "openssl"]
+
+[[services]]
+name = "web"
+start = "export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 && gunicorn -w 2 -b 0.0.0.0:$PORT api:app --timeout 120"
+port = 8000

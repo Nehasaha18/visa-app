@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisaAI Backend Configuration</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Inter, Poppins, sans-serif;
+      background: linear-gradient(135deg, #07104a 0%, #1a1f4b 100%);
+      color: #eaf0ff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .config-container {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      max-width: 500px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #0a61ff 0%, #1ec5ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    p {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 20px;
+    }
+    .label-text {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ccc;
+    }
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #eaf0ff;
+      font-size: 14px;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    input:focus {
+      outline: none;
+      border-color: #0a61ff;
+      background: rgba(10, 97, 255, 0.1);
+    }
+    button {
+      width: 100%;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #0a61ff 0%, #1ec5ff 100%);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 12px;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(10, 97, 255, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #0a61ff;
+    }
+    .btn-secondary:hover {
+      background: rgba(10, 97, 255, 0.1);
+    }
+    .status {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    .status.success {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      color: #22c55e;
+      display: block;
+    }
+    .status.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #ef4444;
+      display: block;
+    }
+    .note {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #93c5fd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="config-container">
+    <h1>🚀 Backend Configuration</h1>
+    <p>Set your backend API URL to enable visa predictions</p>
+    
+    <label>
+      <span class="label-text">Backend API URL</span>
+      <input type="text" id="backendUrl" placeholder="https://ai-visa-prediction-production.up.railway.app" value="https://ai-visa-prediction-production.up.railway.app">
+    </label>
+
+    <button onclick="saveConfig()">✅ Save Configuration</button>
+    <button class="btn-secondary" onclick="testConnection()">🧪 Test Connection</button>
+
+    <div id="status" class="status"></div>
+
+    <div class="note">
+      <strong>Note:</strong> After deploying your backend to Railway, paste the deployed URL here (e.g., https://visaai-backend-production.up.railway.app). The frontend will use this to make predictions.
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_BACKEND_URL = 'https://ai-visa-prediction-production.up.railway.app';
+
+    // Load saved URL on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedUrl = localStorage.getItem('backendUrl');
+      const inputEl = document.getElementById('backendUrl');
+      
+      if (savedUrl) {
+        inputEl.value = savedUrl;
+      } else {
+        // Auto-save default URL
+        inputEl.value = DEFAULT_BACKEND_URL;
+        localStorage.setItem('backendUrl', DEFAULT_BACKEND_URL);
+        showStatus('✅ Using default backend URL', 'success');
+      }
+    });
+
+    async function saveConfig() {
+      const url = document.getElementById('backendUrl').value.trim();
+      
+      if (!url) {
+        showStatus('Please enter a backend URL', 'error');
+        return;
+      }
+
+      // Validate URL format
+      try {
+        new URL(url);
+      } catch (e) {
+        showStatus('Invalid URL format', 'error');
+        return;
+      }
+
+      localStorage.setItem('backendUrl', url);
+      showStatus('✅ Backend URL saved successfully!', 'success');
+      
+      // Redirect to home after 2 seconds
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 2000);
+    }
+
+    async function testConnection() {
+      const url = document.getElementById('backendUrl').value.trim();
+      
+      if (!url) {
+        showStatus('Please enter a backend URL first', 'error');
+        return;
+      }
+
+      try {
+        console.log('Testing connection to:', url);
+        const response = await fetch(`${url}/health`);
+        console.log('Response status:', response.status);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Backend response:', data);
+          showStatus('✅ Connected! Backend is running: ' + data.message, 'success');
+          
+          // Auto-save if test passes
+          localStorage.setItem('backendUrl', url);
+        } else {
+          showStatus('❌ Backend responded with status ' + response.status, 'error');
+        }
+      } catch (error) {
+        console.error('Connection error:', error);
+        showStatus('❌ Connection failed: ' + error.message, 'error');
+      }
+    }
+
+    function showStatus(message, type) {
+      const statusEl = document.getElementById('status');
+      statusEl.textContent = message;
+      statusEl.className = 'status ' + type;
+    }
+
+    // Allow pressing Enter to save
+    document.getElementById('backendUrl').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        saveConfig();
+      }
+    });
+  </script>
+</body>
+</html>

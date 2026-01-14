@@ -1,0 +1,27 @@
+# Railway Deploy Configuration - Backend Only
+
+# Include only backend-related files
+# Everything else will be ignored unless specified here
+
+# Keep these essential files:
+# api.py - main backend application
+# Procfile.backend - deployment configuration
+# requirements.txt - Python dependencies
+# visa_processing_model.pkl - ML model
+# preprocessing_info.pkl - preprocessing info
+
+# Ignore frontend files (separate deployment)
+frontend/
+templates/
+Milestone/
+dataset_tracking.json
+test_prediction.py
+predict_processing_days.py
+MileStone*.py
+*.ipynb
+.git/
+__pycache__/
+.venv/
+*.pyc
+.env
+.DS_Store

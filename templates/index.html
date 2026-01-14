@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisaAI — AI-Powered Visa Processing Time Estimator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">VisaAI</div>
+      <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how">How It Works</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="cta">
+        <a class="btn btn-primary" href="#features">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Predict Your Visa Processing Time with AI Precision</h1>
+          <p class="lead">Smart, data-driven visa processing predictions powered by machine learning.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-gradient" href="#features">Estimate Now</a>
+            <a class="btn btn-outline" href="#analytics">View Dashboard</a>
+          </div>
+          <ul class="benefits">
+            <li>Enterprise-grade models</li>
+            <li>Real-time insights</li>
+            <li>Country & season-aware</li>
+          </ul>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-card glass panel-estimator">
+            <div class="panel-header">⚡ Live Estimate</div>
+            <div class="panel-body">
+              <form id="estimateForm" action="/predict" method="post">
+                <label>
+                  <span class="label-text">Country</span>
+                  <select name="country" required>
+                    <option value="">Select Country</option>
+                    <option value="India">India</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Italy">Italy</option>
+                    <option value="China">China</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="South Korea">South Korea</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="label-text">Visa Type</span>
+                  <select name="visa_type" required>
+                    <option value="">Select Visa Type</option>
+                    <option value="Student">Student</option>
+                    <option value="Work">Work</option>
+                    <option value="Tourist">Tourist</option>
+                  </select>
+                </label>
+                <label>
+                  <span class="label-text">Application Date</span>
+                  <input type="date" name="application_date" required value="2024-09-02">
+                </label>
+                <button class="btn btn-primary btn-submit" type="submit">📊 Estimate</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bg-animated"></div>
+    </section>
+
+    <section class="why-section">
+      <div class="container">
+        <h2 class="section-title">Why VisaAI?</h2>
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <div class="comparison-icon before">⚠️</div>
+            <h3>Without VisaAI</h3>
+            <ul>
+              <li>🔴 Uncertain timelines</li>
+              <li>📋 Manual tracking</li>
+              <li>❓ No insights</li>
+              <li>😰 Constant anxiety</li>
+            </ul>
+          </div>
+          <div class="comparison-arrow">✨</div>
+          <div class="comparison-card">
+            <div class="comparison-icon after">⚡</div>
+            <h3>With VisaAI</h3>
+            <ul>
+              <li>🎯 Precise predictions</li>
+              <li>🤖 AI-powered analysis</li>
+              <li>📊 Data-driven insights</li>
+              <li>😌 Complete confidence</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="transformation-section">
+      <div class="container">
+        <h2 class="section-title">Your Visa Journey</h2>
+        <div class="journey-timeline-grid">
+          <div class="journey-step-card">
+            <div class="step-number">01</div>
+            <div class="step-dot"></div>
+            <h4>Application Submitted</h4>
+            <p>Enter your visa details into VisaAI</p>
+          </div>
+          <div class="journey-connector">→</div>
+          <div class="journey-step-card">
+            <div class="step-number">02</div>
+            <div class="step-dot"></div>
+            <h4>AI Analysis</h4>
+            <p>Machine learning models analyze patterns</p>
+          </div>
+          <div class="journey-connector">→</div>
+          <div class="journey-step-card">
+            <div class="step-number">03</div>
+            <div class="step-dot"></div>
+            <h4>Smart Prediction</h4>
+            <p>Get accurate estimate instantly</p>
+          </div>
+          <div class="journey-connector">→</div>
+          <div class="journey-step-card">
+            <div class="step-number">04</div>
+            <div class="step-dot"></div>
+            <h4>Peace of Mind</h4>
+            <p>Plan ahead with confidence</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features container">
+      <h2 class="section-title">Features</h2>
+      <div class="cards">
+        <div class="card"> <h3>AI-Based Prediction</h3><p>Accurate processing-time estimates using historical data.</p></div>
+        <div class="card"> <h3>Seasonal Trend Analysis</h3><p>Season-aware forecasting to anticipate delays.</p></div>
+        <div class="card"> <h3>Country-wise Insights</h3><p>Per-office and per-country intelligence.</p></div>
+        <div class="card"> <h3>Real-time Dashboard</h3><p>Live charts and KPIs for operations.</p></div>
+        <div class="card"> <h3>High Accuracy Models</h3><p>Linear and ensemble models tuned for performance.</p></div>
+      </div>
+    </section>
+
+    <section id="how" class="how container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="timeline">
+        <div class="step">1. Enter Application Details</div>
+        <div class="step">2. AI Analyzes Historical Data</div>
+        <div class="step">3. Get Instant Prediction</div>
+      </div>
+    </section>
+
+    <section id="analytics" class="analytics container">
+      <h2 class="section-title">Analytics Preview</h2>
+      <div class="dashboard-grid">
+        <div class="chart-card glass">
+          <canvas id="chartTrend"></canvas>
+        </div>
+        <div class="chart-card glass">
+          <canvas id="chartSeason"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container">
+      <h2 class="section-title">About VisaAI</h2>
+      <p>VisaAI is an AI-powered platform designed to help applicants estimate visa processing timelines using historical data, machine learning models, and seasonal patterns.</p>
+    </section>
+
+    <section id="contact" class="contact container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-cards">
+        <div class="contact-card glass">
+          <strong>Phone</strong>
+          <p>9547116280</p>
+        </div>
+        <div class="contact-card glass">
+          <strong>Email</strong>
+          <p>gulshan19112005@gmail.com</p>
+        </div>
+        <a href="https://www.linkedin.com/in/gulshan-kumar19" class="contact-card glass linkedin-logo" title="Connect on LinkedIn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="#0a61ff"><path d="M20.5 2h-17C2.1 2 1 3.1 1 4.5v15C1 20.9 2.1 22 3.5 22h17c1.4 0 2.5-1.1 2.5-2.5v-15C23 3.1 21.9 2 20.5 2zM8 19H5v-9h3V19zm-1.5-10.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zM19 19h-3v-4.4c0-1-.4-1.7-1.2-1.7-.7 0-1.1.5-1.3.9-.1.1-.1.3-.1.5V19h-3v-9h3v1.2c.4-.6 1.1-1.5 2.8-1.5 2 0 3.5 1.3 3.5 4.1V19z"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="brand">VisaAI</div>
+      <div class="links">Home • Features • About • Contact</div>
+      <div class="copyright">© 2026 VisaAI. Built by Gulshan Kumar. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

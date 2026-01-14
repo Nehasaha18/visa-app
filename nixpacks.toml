@@ -1,0 +1,11 @@
+[build]
+providers = ["python"]
+
+[[build.nix-shell.packages]]
+package = "libgomp"
+
+[[build.nix-shell.packages]]
+package = "libffi"
+
+[[build.nix-shell.packages]]
+package = "openssl"
