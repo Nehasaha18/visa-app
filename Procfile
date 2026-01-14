@@ -1,1 +1,0 @@
-web: export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 && export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH && gunicorn -w 2 -b 0.0.0.0:$PORT api:app --timeout 120
