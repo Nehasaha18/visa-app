@@ -1,5 +1,5 @@
 // Backend API Configuration
-let BACKEND_API_URL = 'http://localhost:5000';
+let BACKEND_API_URL = 'https://visa-backend-maiz.onrender.com';
 
 // Check if user has configured a custom backend URL
 const savedUrl = localStorage.getItem('backendUrl');
